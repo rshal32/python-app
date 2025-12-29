@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Clone Repo') {
             steps {
-                git 'https://github.com/<your-username>/python-jenkins-ci.git'
+                git 'https://github.com/rshal32/python-app.git'
             }
         }
 
