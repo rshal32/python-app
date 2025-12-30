@@ -2,11 +2,19 @@ pipeline {
     agent any
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 sh '''
-                python3 --version
-                pip3 install flask
+                    python3 -m venv venv
+                    . venv/bin/activate
+                    pip install --upgrade pip
+                    pip install flask
                 '''
             }
         }
@@ -14,7 +22,8 @@ pipeline {
         stage('Run Test') {
             steps {
                 sh '''
-                python3 -m py_compile app.py
+                    . venv/bin/activate
+                    python app.py
                 '''
             }
         }
