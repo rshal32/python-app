@@ -23,7 +23,7 @@ pipeline {
             steps {
                 sh '''
                     . venv/bin/activate
-                    python app.py
+                    python3 -m py_compile app.py
                 '''
             }
         }
