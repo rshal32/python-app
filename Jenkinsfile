@@ -32,6 +32,16 @@ pipeline {
         sh 'docker build -t python-jenkins-app .'
     }
 }
+stage('Deploy') {
+    steps {
+        sh '''
+        docker stop python-app || true
+        docker rm python-app || true
+        docker run -d --name python-app -p 80:5000 python-jenkins-app
+        '''
+    }
+}
+
     }
 }
 
